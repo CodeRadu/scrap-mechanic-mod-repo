@@ -1,0 +1,27 @@
+$margin: 40px;
+
+.data {
+  margin: $margin;
+  width: calc(100% - $margin * 2);
+}
+.silent {
+  color: gray;
+}
+textarea {
+  width: 100%;
+  height: 200px;
+}
+mat-form-field {
+  width: 100%;
+}
+.link {
+  color: black;
+}
+.preview {
+  width: 100%;
+  max-width: 500px;
+}
+.preview:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}

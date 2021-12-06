@@ -1,0 +1,22 @@
+$margin: 40px;
+
+.form {
+  width: calc(100% - $margin);
+  margin: $margin;
+}
+input {
+  width: 100%;
+}
+mat-form-field {
+  width: calc(100% - $margin * 2);
+}
+textarea {
+  width: 100%;
+  height: 200px;
+}
+.error {
+  color: red;
+}
+.link {
+  color: black;
+}

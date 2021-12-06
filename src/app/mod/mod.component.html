@@ -1,0 +1,22 @@
+<div class="data" *ngIf="mod">
+  <h1>{{ mod.name }}</h1>
+  <a href="/" class="link">Back</a>
+  <br />
+  <span class="silent"> {{ mod.downloads }} downloads </span>
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <textarea matInput readonly>{{ mod.description }}</textarea>
+  </mat-form-field>
+  <div class="photos">
+    Photos:
+    <br />
+    <img src="{{ image }}" class="preview" (click)="DownloadImg()" />
+  </div>
+  <div class="download">
+    <button mat-raised-button (click)="DownloadMod()">Download</button>
+  </div>
+  <div class="controls" *ngIf="owner">
+    <button mat-raised-button (click)="EditMod()">Edit</button>
+    <button mat-raised-button (click)="DeleteMod()">Delete</button>
+  </div>
+</div>

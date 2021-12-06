@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "scrap-mechanic-mods": {
+      "hosting": {
+        "scrap-mechanic-mod-repo": [
+          "scrap-mechanic-mods"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "scrap-mechanic-mods"
+  }
+}

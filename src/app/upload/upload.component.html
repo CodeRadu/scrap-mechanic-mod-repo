@@ -1,0 +1,39 @@
+<div class="upload">
+  <form class="form" (submit)="CreateMod($event)">
+    <div [textContent]="error" class="error"></div>
+    <mat-form-field appearance="standard">
+      <mat-label>Name</mat-label>
+      <input required matInput #name (keyup)="SetName(name.value)" />
+    </mat-form-field>
+    <mat-form-field appearance="standard">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        #description
+        (keyup)="SetDescription(description.value)"
+        required
+      ></textarea>
+    </mat-form-field>
+    <button type="button" mat-raised-button (click)="imageFile.click()">
+      Choose Image
+    </button>
+    <input type="file" hidden #imageFile (change)="SetImage(imageFile.files)" />
+    <button type="button" mat-raised-button (click)="file.click()">
+      Choose Zip file
+    </button>
+    <input type="file" hidden #file (change)="SetFile(file.files)" />
+    <div class="submit">
+      <br />
+      <button type="submit" mat-raised-button [disabled]="uploading">
+        Create
+      </button>
+    </div>
+    <div class="spinner" *ngIf="uploading">
+      Uploading
+      <mat-progress-spinner
+        mode="indeterminate"
+        diameter="50"
+      ></mat-progress-spinner>
+    </div>
+  </form>
+</div>

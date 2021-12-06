@@ -1,0 +1,9 @@
+<mat-toolbar color="primary">
+  <div class="name">
+    <span><a href="/" class="site-name">SMMR</a></span>
+  </div>
+  <div class="nav-buttons" *ngIf="authService.userData">
+    <button mat-button (click)="UploadMod()">Upload Mod</button>
+  </div>
+  <app-login></app-login>
+</mat-toolbar>

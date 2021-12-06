@@ -1,0 +1,48 @@
+<div class="upload">
+  <form class="form" (submit)="EditMod($event)">
+    <div [textContent]="error" class="error"></div>
+    <div>Theese fields are optional</div>
+    <div class="link">
+      <a href="/mod/{{ mod?.id }}">Back</a>
+    </div>
+    <mat-form-field appearance="standard">
+      <mat-label>Name</mat-label>
+      <input
+        matInput
+        #modName
+        (keyup)="SetName(modName.value)"
+        [value]="name"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="standard">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        #descript
+        (keyup)="SetDescription(descript.value)"
+        [value]="description"
+      ></textarea>
+    </mat-form-field>
+    <button type="button" mat-raised-button (click)="imageFile.click()">
+      Choose Image
+    </button>
+    <input type="file" hidden #imageFile (change)="SetImage(imageFile.files)" />
+    <button type="button" mat-raised-button (click)="file.click()">
+      Choose Zip file
+    </button>
+    <input type="file" hidden #file (change)="SetFile(file.files)" />
+    <div class="submit">
+      <br />
+      <button type="submit" mat-raised-button [disabled]="uploading">
+        Update
+      </button>
+    </div>
+    <div class="spinner" *ngIf="uploading">
+      Uploading
+      <mat-progress-spinner
+        mode="indeterminate"
+        diameter="50"
+      ></mat-progress-spinner>
+    </div>
+  </form>
+</div>

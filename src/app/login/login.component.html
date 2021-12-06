@@ -1,0 +1,17 @@
+<div class="google-auth-block">
+  <button
+    *ngIf="!authService.userData"
+    mat-stroked-button
+    (click)="authService.GoogleAuth()"
+  >
+    Login With Google
+  </button>
+  <div class="user-info" *ngIf="authService.userData">
+    <img
+      src="{{ authService.userData.photoURL }}"
+      alt="{{ authService.userData.displayName }}"
+      class="user-photo"
+    />
+    <button mat-stroked-button (click)="authService.SignOut()">Logout</button>
+  </div>
+</div>

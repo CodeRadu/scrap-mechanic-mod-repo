@@ -1,0 +1,7 @@
+<mat-card *ngFor="let mod of mods">
+  <h2>{{ mod?.name }}</h2>
+  <span class="silent"> {{ mod?.downloads }} downloads </span>
+  <br />
+  <br />
+  <a href="/mod/{{ mod?.id }}" class="link">View</a>
+</mat-card>
