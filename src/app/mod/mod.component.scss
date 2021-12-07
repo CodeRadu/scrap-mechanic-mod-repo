@@ -20,8 +20,22 @@ mat-form-field {
 .preview {
   width: 100%;
   max-width: 500px;
+  min-width: 300px;
+  min-height: 300px;
+  max-height: 500px;
+  animation: skeleton-loading 1s linear infinite alternate;
 }
 .preview:hover {
   cursor: pointer;
   opacity: 0.5;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(200, 20%, 80%);
+  }
+
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
 }
