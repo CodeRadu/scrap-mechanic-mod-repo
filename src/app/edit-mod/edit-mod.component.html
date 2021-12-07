@@ -1,7 +1,7 @@
 <div class="upload">
   <form class="form" (submit)="EditMod($event)">
     <div [textContent]="error" class="error"></div>
-    <div>Theese fields are optional</div>
+    <div>If these fields dont get modified, they will not change the mod</div>
     <div class="link">
       <a href="/mod/{{ mod?.id }}">Back</a>
     </div>
