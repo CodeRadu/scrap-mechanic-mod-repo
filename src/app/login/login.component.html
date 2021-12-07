@@ -1,7 +1,7 @@
 <div class="google-auth-block">
   <button
     *ngIf="!authService.userData"
-    mat-stroked-button
+    mat-button
     (click)="authService.GoogleAuth()"
   >
     Login With Google
@@ -12,6 +12,6 @@
       alt="{{ authService.userData.displayName }}"
       class="user-photo"
     />
-    <button mat-stroked-button (click)="authService.SignOut()">Logout</button>
+    <button mat-button (click)="authService.SignOut()">Logout</button>
   </div>
 </div>
