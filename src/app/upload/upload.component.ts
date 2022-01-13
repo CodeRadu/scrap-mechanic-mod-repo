@@ -59,6 +59,7 @@ export class UploadComponent implements OnInit {
       }
     }
     this.uploading = true;
+    this.error = '';
     const id = uuidv4();
     const url = await this.storageService.UploadFile(this.file, id + '.zip');
     if (this.image)
