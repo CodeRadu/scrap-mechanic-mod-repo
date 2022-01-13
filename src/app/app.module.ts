@@ -31,6 +31,7 @@ import { ModComponent } from './mod/mod.component';
 import { HomeComponent } from './home/home.component';
 import { MatCardModule } from '@angular/material/card';
 import { EditModComponent } from './edit-mod/edit-mod.component';
+import { UsersComponent } from './users/users.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +41,7 @@ import { EditModComponent } from './edit-mod/edit-mod.component';
     ModComponent,
     HomeComponent,
     EditModComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,

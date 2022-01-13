@@ -1,4 +1,4 @@
-<div class="upload">
+<div class="upload" *ngIf="authService.userData?.banned == false">
   <form class="form" (submit)="CreateMod($event)">
     <div [textContent]="error" class="error"></div>
     <mat-form-field appearance="standard">
@@ -45,4 +45,11 @@
       ></mat-progress-spinner>
     </div>
   </form>
+</div>
+<div class="banned" *ngIf="authService.userData?.banned == true">
+  <h1>You are banned</h1>
+  <p>
+    You are banned from creating mods. If you believe this is an error, please
+    contact <a href="mailto:radu.gabi.m@gmail.com">radu.gabi.m@gmail.com</a>
+  </p>
 </div>
