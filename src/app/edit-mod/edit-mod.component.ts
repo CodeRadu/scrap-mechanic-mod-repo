@@ -34,7 +34,10 @@ export class EditModComponent implements OnInit {
     this.route.params.subscribe(async (params: Params) => {
       this.id = params['id'];
       this.mod = await this.firestoreService.GetDocument('mods', this.id);
-      if (this.mod?.ownerId == this.authService.userData?.uid)
+      if (
+        this.mod?.ownerId == this.authService.userData?.uid ||
+        this.authService.userData?.admin
+      )
         this.owner = true;
       else {
         this.router.navigate(['mod', this.id]);
@@ -102,6 +105,9 @@ export class EditModComponent implements OnInit {
         imageUrl: imageUrl,
       });
     }
+    this.router.navigate([`/mod`, this.id]);
+  }
+  GoBack() {
     this.router.navigate([`/mod`, this.id]);
   }
 }
