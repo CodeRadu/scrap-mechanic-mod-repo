@@ -1,6 +1,6 @@
 <div class="data" *ngIf="mod">
   <h1>{{ mod.name }}</h1>
-  <a href="/" class="link">Back</a>
+  <button mat-button (click)="GoBack()">Back</button>
   <br />
   <span class="silent"> {{ mod.downloads }} downloads </span>
   <mat-form-field>

@@ -1,0 +1,7 @@
+<mat-card *ngFor="let user of users">
+  <img src="{{ user?.photoURL }}" class="img" />
+  <h2>{{ user?.displayName }}</h2>
+  <button mat-button (click)="SetBanState(user)">
+    {{ user?.banned ? "Unban" : "Ban" }}
+  </button>
+</mat-card>

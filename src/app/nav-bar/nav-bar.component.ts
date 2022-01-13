@@ -15,4 +15,7 @@ export class NavBarComponent implements OnInit {
   UploadMod() {
     this.router.navigate(['/upload']);
   }
+  ViewUsers() {
+    this.router.navigate(['/users']);
+  }
 }

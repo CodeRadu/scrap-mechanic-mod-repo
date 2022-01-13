@@ -5,6 +5,8 @@ import AuthGuardService from './services/authGuard.service';
 import { ModComponent } from './mod/mod.component';
 import { HomeComponent } from './home/home.component';
 import { EditModComponent } from './edit-mod/edit-mod.component';
+import { UsersComponent } from './users/users.component';
+import AdminGuardService from './services/adminGuard.service';
 const routes: Routes = [
   {
     path: 'upload',
@@ -23,6 +25,11 @@ const routes: Routes = [
     path: 'mod/:id/edit',
     component: EditModComponent,
     canActivate: [AuthGuardService],
+  },
+  {
+    path: 'users',
+    component: UsersComponent,
+    canActivate: [AdminGuardService],
   },
 ];
 

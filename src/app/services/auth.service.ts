@@ -5,23 +5,27 @@ import { GoogleAuthProvider, signOut } from 'firebase/auth';
 import { signInWithPopup, Auth, AuthProvider } from '@angular/fire/auth';
 import { doc, Firestore, setDoc } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { getDoc } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root',
 })
 export default class AuthService {
-  userData: User | null = null;
+  userData: User | null | undefined = null;
   constructor(
     public router: Router,
     public ngZone: NgZone,
     public afAuth: Auth,
     public afs: Firestore
   ) {
-    this.afAuth.onAuthStateChanged((user) => {
+    this.afAuth.onAuthStateChanged(async (user) => {
       if (user) {
-        this.userData = user;
-        localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user') as string);
+        const foundUser = await getDoc(doc(this.afs, 'users', user.uid));
+        if (!foundUser) location.reload();
+        else {
+          localStorage.setItem('user', JSON.stringify(foundUser.data()));
+          this.userData = foundUser.data();
+        }
       } else {
         localStorage.removeItem('user');
         JSON.parse(localStorage.getItem('user') as string);
@@ -34,9 +38,6 @@ export default class AuthService {
   }
   AuthLogin(provider: AuthProvider) {
     return signInWithPopup(this.afAuth, provider).then((result) => {
-      this.ngZone.run(() => {
-        this.router.navigate(['dashboard']);
-      });
       this.SetUserData(result.user);
     });
   }
@@ -47,10 +48,15 @@ export default class AuthService {
       displayName: user.displayName,
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
+      banned: false,
+      admin: false,
     };
     if (user.uid) {
-      this.userData = userData;
-      return await setDoc(doc(this.afs, 'users', user.uid), userData);
+      const foundUserData = await getDoc(doc(this.afs, 'users', user.uid));
+      if (!foundUserData.data()) {
+        this.userData = userData;
+        return await setDoc(doc(this.afs, 'users', user.uid), userData);
+      } else this.userData = foundUserData.data();
     }
     throw new Error('User not found');
   }

@@ -3,5 +3,5 @@
   <span class="silent"> {{ mod?.downloads }} downloads </span>
   <br />
   <br />
-  <a href="/mod/{{ mod?.id }}" class="link">View</a>
+  <button mat-button (click)="Go(mod?.id)">View</button>
 </mat-card>

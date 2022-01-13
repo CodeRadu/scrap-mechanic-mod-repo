@@ -4,6 +4,9 @@
   </div>
   <div class="nav-buttons" *ngIf="authService.userData">
     <button mat-button (click)="UploadMod()">Upload Mod</button>
+    <button mat-button (click)="ViewUsers()" *ngIf="authService.userData.admin">
+      View users
+    </button>
   </div>
   <app-login></app-login>
 </mat-toolbar>

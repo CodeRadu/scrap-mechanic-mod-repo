@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { query, orderBy, limit, collection, getDocs } from 'firebase/firestore';
 import FirestoreService from '../services/firestore.service';
 
@@ -9,7 +10,10 @@ import FirestoreService from '../services/firestore.service';
 })
 export class HomeComponent implements OnInit {
   mods: Array<Mod | undefined> = [];
-  constructor(private firestoreService: FirestoreService) {}
+  constructor(
+    private firestoreService: FirestoreService,
+    private router: Router
+  ) {}
 
   async ngOnInit() {
     const q = query(
@@ -21,6 +25,11 @@ export class HomeComponent implements OnInit {
     modsSnapshot.forEach((mod) => {
       this.mods.push(mod.data());
     });
+  }
+  Go(id: string | undefined) {
+    if (id != undefined) {
+      this.router.navigate(['mod', id]);
+    }
   }
 }
 

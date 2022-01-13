@@ -27,7 +27,10 @@ export class ModComponent implements OnInit {
     this.route.params.subscribe(async (params: Params) => {
       this.id = params['id'];
       this.mod = await this.firestoreService.GetDocument('mods', this.id);
-      if (this.mod?.ownerId == this.authService.userData?.uid)
+      if (
+        this.mod?.ownerId == this.authService.userData?.uid ||
+        this.authService.userData?.admin
+      )
         this.owner = true;
       if (this.mod?.imageUrl) {
         this.image = this.mod.imageUrl;
@@ -55,6 +58,9 @@ export class ModComponent implements OnInit {
   }
   DownloadImg() {
     window.open(this.image as string);
+  }
+  GoBack() {
+    this.router.navigate(['/']);
   }
 }
 
