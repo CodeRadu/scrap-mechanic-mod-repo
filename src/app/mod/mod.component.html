@@ -3,6 +3,8 @@
   <button mat-button (click)="GoBack()">Back</button>
   <br />
   <span class="silent"> {{ mod.downloads }} downloads </span>
+  <br>
+  <span> Made by: {{user?.displayName}}</span>
   <mat-form-field>
     <mat-label>Description</mat-label>
     <textarea matInput readonly>{{ mod.description }}</textarea>

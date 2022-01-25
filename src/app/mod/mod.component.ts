@@ -3,6 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import AuthService from '../services/auth.service';
 import FirestoreService from '../services/firestore.service';
 import StorageService from '../services/storage.service';
+import { User } from '../services/user'
 
 @Component({
   selector: 'app-mod',
@@ -14,6 +15,7 @@ export class ModComponent implements OnInit {
   public mod: Mod | null | undefined = null;
   public owner = false;
   public image: string | undefined = '/assets/no-image.png';
+  public user: User | undefined
 
   constructor(
     private route: ActivatedRoute,
@@ -21,7 +23,7 @@ export class ModComponent implements OnInit {
     public authService: AuthService,
     private router: Router,
     private storageService: StorageService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(async (params: Params) => {
@@ -35,6 +37,8 @@ export class ModComponent implements OnInit {
       if (this.mod?.imageUrl) {
         this.image = this.mod.imageUrl;
       }
+      if (!this.mod?.ownerId) return
+      this.user = await this.firestoreService.GetDocument('users', this.mod?.ownerId)
     });
   }
 
@@ -53,7 +57,7 @@ export class ModComponent implements OnInit {
     this.storageService.DeleteFile(this.id + '.zip');
     try {
       this.storageService.DeleteFile(this.id + '.jpg');
-    } catch (err) {}
+    } catch (err) { }
     this.router.navigate(['/']);
   }
   DownloadImg() {
